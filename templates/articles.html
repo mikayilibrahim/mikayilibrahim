@@ -1,0 +1,76 @@
+{% extends "layout.html "%}
+
+
+{% block body %}
+
+<h4> Məqalələr 
+    {% csrf_token %}
+
+     <form   style=" float :right; " >
+        <input type="text" placeholder="Search.." name="keyword">
+        <button style="border-radius: 12px;" type="submit" class="btn btn-info" >Axtar</button>
+      </form>
+</h4>
+
+<hr>
+
+
+
+    {% if articles %}
+
+     {% for article in articles %}
+     
+     
+        
+
+     <div class="col-md-10 blogShort">
+         <a href="/articles/articles/{{article.id}}"><h1>{{ article.title}}</h1></a>
+
+         {% if article.article_image%}
+        <img src="{{article.article_image.url}}" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+
+        {% else %}
+
+        {% endif %}
+        
+           
+        <article><p>
+            {{article.content|safe|truncatewords:50}} 
+            <a style=" float :lift;" href="/articles/articles/{{article.id}}" class="btn btn-primary">oxu</a>
+           
+            </p></article>
+           
+     
+    </div>
+
+
+
+
+
+      
+      
+
+              
+   
+
+       
+        <hr>
+    <br><br><br>
+
+     {% endfor %}
+
+
+  
+
+    {% else %}
+    <div class="alert alert-danger">
+        Məqaləniz tapılmadı
+    </div>
+
+
+    {% endif %}
+ 
+
+
+
+{% endblock body %}

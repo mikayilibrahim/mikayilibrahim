@@ -1,0 +1,22 @@
+{% extends "layout.html"%}
+
+
+{% block body%}
+
+
+<div style = 'margin-top: 100px;' class="jumbotron text-center">
+    <h3>Ana Seife</h3>
+
+
+</div>
+<p>
+{% if  request.user.is_authenticated %}
+giriş edilib, {{request.user.username}}
+
+{% else %}
+giriş edilməmişdir
+
+{% endif %}
+</p>
+
+{% endblock %}
