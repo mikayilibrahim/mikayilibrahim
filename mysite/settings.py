@@ -27,7 +27,7 @@ SECRET_KEY = '^unnlpw&*oen96q#-j9lk$re-=c0o#!5z&^k#%akafyp3%*b*8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [env.list('DJANGO_ALLOWED_HOSTS', default=['example.com'])]
 
 
 # Application definition
