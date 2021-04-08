@@ -14,6 +14,8 @@ from pathlib import Path
 import django_heroku django_heroku.settings(locals())
 import os
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR =  os.path.dirname (os.path.dirname (os.path.abspath (__ file__)))
 
@@ -25,51 +27,14 @@ BASE_DIR =  os.path.dirname (os.path.dirname (os.path.abspath (__ file__)))
 SECRET_KEY = '^unnlpw&*oen96q#-j9lk$re-=c0o#!5z&^k#%akafyp3%*b*8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ["makoblog.herokuapp.com"]
 
 
 # Application definition
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
-                       'pathname=%(pathname)s lineno=%(lineno)s '
-                       'funcname=%(funcName)s %(message)s'),
-            'datefmt': '%Y-%m-%d %H:%M:%S'
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s'
-        }
-    },
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'logging.NullHandler',
-        },
-        'console': {
-            'level': 'INFO',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-    }
-}
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -122,18 +87,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+
 DATABASES = {
-    'default': {
-        'ENGINE':'django.contrib.gis.db.backends.postgis',
-        'NAME':'mako',
-        'USER':'mikayil',
-        'PASSWORD':'24101885',
-        'HOST':'localhost',
-        'PORT': '5432', #heroku
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
