@@ -15,7 +15,7 @@ import django_heroku django_heroku.settings(locals())
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR =  os.path.dirname (os.path.dirname (os.path.abspath (__ file__)))
 
 
 # Quick-start development settings - unsuitable for production
