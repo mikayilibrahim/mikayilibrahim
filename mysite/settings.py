@@ -27,7 +27,7 @@ SECRET_KEY = '^unnlpw&*oen96q#-j9lk$re-=c0o#!5z&^k#%akafyp3%*b*8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["hacka-labs.herokuapp.com"]
+ALLOWED_HOSTS = ["makoblog.herokuapp.com"]
 
 
 # Application definition
@@ -99,8 +99,10 @@ ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
     {
+      
+        
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': [os.path.join (BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,10 +124,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE':'django.contrib.gis.db.backends.postgis',
+        'NAME':'mako',
+        'USER':'mikayil',
+        'PASSWORD':'24101885',
+        'HOST':'localhost',
+        'PORT': '5432', #heroku
     }
 }
+
 
 
 # Password validation
